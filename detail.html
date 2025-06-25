@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DGS Gallery - Detail View</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .detail-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 2rem 2rem;
+        }
+        
+        .detail-player {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--color-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .player-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: var(--gradient-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+        
+        .detail-main h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .detail-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .space-selector {
+            margin-bottom: 2rem;
+        }
+        
+        .space-selector h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .space-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .space-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .space-btn:hover,
+        .space-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+        }
+        
+        .detail-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .related-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .related-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .related-item:hover {
+            opacity: 0.8;
+        }
+        
+        .related-thumb {
+            width: 120px;
+            aspect-ratio: 16/9;
+            background: var(--color-gray);
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        
+        .related-info h4 {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .related-info p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        @media (max-width: 1024px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-sidebar {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .detail-main h1 {
+                font-size: 1.75rem;
+            }
+            
+            .detail-meta {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .space-buttons {
+                gap: 0.5rem;
+            }
+            
+            .space-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <img src="assets/images/uphash_logo_white.png" alt="UpHash Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="index.html#featured" class="nav-link">注目</a></li>
+                <li><a href="index.html#collections" class="nav-link">コレクション</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <div class="detail-player">
+            <div class="placeholder-3d">
+                <span style="font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.1);">3DGS</span>
+            </div>
+            <div class="player-controls">
+                <button class="play-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+                <div style="flex: 1;">
+                    <div style="height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px;">
+                        <div style="width: 30%; height: 100%; background: var(--gradient-primary); border-radius: 2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size: 0.875rem;">3:45 / 15:00</span>
+            </div>
+        </div>
+        
+        <div class="detail-content">
+            <div class="detail-main">
+                <h1 id="detail-title">東京国立博物館</h1>
+                
+                <div class="detail-meta">
+                    <span id="detail-views">5.2K views</span>
+                    <span id="detail-duration">15分</span>
+                    <span id="detail-year">2024</span>
+                </div>
+                
+                <p class="detail-description" id="detail-description">
+                    日本最古の博物館。国宝や重要文化財を含む約12万件の収蔵品を誇る、日本文化の宝庫。
+                </p>
+                
+                <div class="space-selector">
+                    <h3>空間を選択</h3>
+                    <div class="space-buttons" id="space-buttons">
+                        <button class="space-btn active">本館</button>
+                        <button class="space-btn">東洋館</button>
+                        <button class="space-btn">平成館</button>
+                    </div>
+                </div>
+                
+                <div class="detail-tags" id="detail-tags">
+                    <h3>タグ</h3>
+                    <div class="catalog-tags">
+                        <span class="catalog-tag">文化財</span>
+                        <span class="catalog-tag">歴史</span>
+                        <span class="catalog-tag">アート</span>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="detail-sidebar">
+                <div class="related-section">
+                    <h3>関連コンテンツ</h3>
+                    <div id="related-items">
+                        <!-- Related items will be dynamically loaded -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Get content ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const contentId = parseInt(urlParams.get('id')) || 1;
+        
+        // Find content data
+        const content = catalogData.find(item => item.id === contentId);
+        
+        if (content) {
+            // Update page content
+            document.getElementById('detail-title').textContent = content.title;
+            document.getElementById('detail-views').textContent = content.views + ' views';
+            document.getElementById('detail-duration').textContent = content.duration;
+            document.getElementById('detail-year').textContent = content.year;
+            document.getElementById('detail-description').textContent = content.description;
+            
+            // Update spaces
+            const spaceButtons = document.getElementById('space-buttons');
+            spaceButtons.innerHTML = content.spaces.map((space, index) => 
+                `<button class="space-btn ${index === 0 ? 'active' : ''}">${space}</button>`
+            ).join('');
+            
+            // Update tags
+            const tagsContainer = document.querySelector('#detail-tags .catalog-tags');
+            tagsContainer.innerHTML = content.tags.map(tag => 
+                `<span class="catalog-tag">${tag}</span>`
+            ).join('');
+            
+            // Load related items
+            const relatedItems = catalogData
+                .filter(item => item.category === content.category && item.id !== content.id)
+                .slice(0, 4);
+                
+            const relatedContainer = document.getElementById('related-items');
+            relatedContainer.innerHTML = relatedItems.map(item => `
+                <div class="related-item" onclick="window.location.href='detail.html?id=${item.id}'">
+                    <div class="related-thumb">
+                        <div class="placeholder-3d" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 1.5rem; font-weight: 700; color: rgba(255,255,255,0.1);">3D</span>
+                        </div>
+                    </div>
+                    <div class="related-info">
+                        <h4>${item.title}</h4>
+                        <p>${item.views} • ${item.duration}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Space button interactions
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('space-btn')) {
+                document.querySelectorAll('.space-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                console.log('Selected space:', e.target.textContent);
+            }
+        });
+    </script>
+</body>
+</html>
