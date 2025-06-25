@@ -10,7 +10,8 @@ const REFLCT_CONFIG = {
     },
     // UPHASH custom scenes
     customScenes: {
-        'uphash-scene-1': 'baf502d8-d568-4b5a-affe-d2a62830d815'
+        'uphash-scene-1': 'baf502d8-d568-4b5a-affe-d2a62830d815',
+        'uphash-scene-2': '016b6bab-850b-4224-9619-3b7ea0569776'
     }
 };
 
@@ -27,7 +28,7 @@ const catalogData = [
         spaces: ["本館", "東洋館", "平成館"],
         tags: ["文化財", "歴史", "アート"],
         reflctSceneIds: {
-            "本館": "bois-studio",
+            "本館": "uphash-scene-2",
             "東洋館": "interior-scan", 
             "平成館": "castle-winter"
         }
@@ -238,8 +239,8 @@ const catalogData = [
         spaces: ["Borderless World", "運動の森", "EN Tea House"],
         tags: ["デジタルアート", "体験型", "お台場"],
         reflctSceneIds: {
-            "Borderless World": "bois-studio",
-            "運動の森": "interior-scan", 
+            "Borderless World": "uphash-scene-2",
+            "運動の森": "uphash-scene-1", 
             "EN Tea House": "interior-scan"
         }
     },
