@@ -311,13 +311,7 @@ function renderCatalog() {
         <div class="catalog-item" data-id="${item.id}" style="animation-delay: ${index * 0.1}s">
             <div class="catalog-preview ${isMobile ? 'vertical' : ''}">
                 <div class="placeholder-3d">
-                    <div class="preview-overlay">
-                        <button class="play-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </button>
-                    </div>
+                    <span class="preview-number">${item.id}</span>
                 </div>
             </div>
             <div class="catalog-info ${isMobile ? 'mobile' : ''}">
@@ -337,12 +331,9 @@ function renderCatalog() {
     
     // Add click handlers to catalog items
     document.querySelectorAll('.catalog-item').forEach(item => {
-        item.addEventListener('click', (e) => {
-            // Don't navigate if clicking the play button
-            if (!e.target.closest('.play-btn')) {
-                const itemId = item.getAttribute('data-id');
-                window.location.href = `detail.html?id=${itemId}`;
-            }
+        item.addEventListener('click', () => {
+            const itemId = item.getAttribute('data-id');
+            window.location.href = `detail.html?id=${itemId}`;
         });
     });
 }
@@ -410,13 +401,10 @@ window.addEventListener('resize', () => {
 
 // Add click handlers to featured items
 document.querySelectorAll('.featured-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-        // Don't navigate if clicking the play button
-        if (!e.target.closest('.play-btn')) {
-            const itemId = item.getAttribute('data-id');
-            if (itemId) {
-                window.location.href = `detail.html?id=${itemId}`;
-            }
+    item.addEventListener('click', () => {
+        const itemId = item.getAttribute('data-id');
+        if (itemId) {
+            window.location.href = `detail.html?id=${itemId}`;
         }
     });
 });
