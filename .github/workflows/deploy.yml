@@ -1,31 +1,17 @@
-name: Deploy to GitHub Pages
-
+name: Deploy
 on:
     push:
-      branches: [ main ]
-    workflow_dispatch:
-
-  permissions:
-    contents: write
-    pages: write
-    id-token: write
-
+      branches:
+        - main
   jobs:
     deploy:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-
+        - uses: actions/checkout@v4
         - name: Replace API key
-          env:
-            REFLCT_API_KEY: ${{ secrets.REFLCT_API_KEY }}
-          run: |
-            sed -i "s/YOUR_API_KEY_HERE/$REFLCT_API_KEY/g" config.js
-            echo "Config.js updated with API key"
-
-        - name: Deploy to GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
+          run: sed -i "s/YOUR_API_KEY_HERE/${{ secrets.REFLCT_API_KEY }}/g"
+   config.js
+        - uses: peaceiris/actions-gh-pages@v3
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: ./
