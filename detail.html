@@ -189,22 +189,10 @@
     </header>
 
     <div class="detail-container">
-        <div class="detail-player">
+        <div class="detail-player" id="reflct-viewer">
             <div class="placeholder-3d">
                 <span style="font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.1);">3DGS</span>
-            </div>
-            <div class="player-controls">
-                <button class="play-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                </button>
-                <div style="flex: 1;">
-                    <div style="height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px;">
-                        <div style="width: 30%; height: 100%; background: var(--gradient-primary); border-radius: 2px;"></div>
-                    </div>
-                </div>
-                <span style="font-size: 0.875rem;">3:45 / 15:00</span>
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 1rem;">Reflctビューアーを読み込み中...</p>
             </div>
         </div>
         
@@ -253,6 +241,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="detail-viewer.js"></script>
     <script>
         // Get content ID from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
@@ -301,15 +290,6 @@
                 </div>
             `).join('');
         }
-        
-        // Space button interactions
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('space-btn')) {
-                document.querySelectorAll('.space-btn').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-                console.log('Selected space:', e.target.textContent);
-            }
-        });
     </script>
 </body>
 </html>

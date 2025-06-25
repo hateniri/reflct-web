@@ -1,3 +1,9 @@
+// Reflct configuration
+const REFLCT_CONFIG = {
+    apiKey: 'YOUR_API_KEY_HERE', // Replace with actual API key
+    defaultSceneId: 'demo-scene-id' // Replace with actual scene ID
+};
+
 // Catalog data with enhanced structure
 const catalogData = [
     { 
@@ -9,7 +15,12 @@ const catalogData = [
         duration: "15分",
         year: "2024",
         spaces: ["本館", "東洋館", "平成館"],
-        tags: ["文化財", "歴史", "アート"]
+        tags: ["文化財", "歴史", "アート"],
+        reflctSceneIds: {
+            "本館": "scene-id-1",
+            "東洋館": "scene-id-2", 
+            "平成館": "scene-id-3"
+        }
     },
     { 
         id: 2, 
