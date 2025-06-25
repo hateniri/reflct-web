@@ -14,12 +14,32 @@ let currentSpace = '';
 function initializeViewer() {
     const viewerContainer = document.getElementById('reflct-viewer');
     
-    if (!content || !content.reflctSceneIds) {
+    if (!content) {
         viewerContainer.innerHTML = `
             <div class="placeholder-3d">
                 <span style="font-size: 2rem; color: rgba(255,255,255,0.5);">
-                    3Dシーンが利用できません
+                    コンテンツが見つかりません
                 </span>
+            </div>
+        `;
+        return;
+    }
+    
+    // Check if content has any scenes available
+    if (!content.reflctSceneIds || Object.keys(content.reflctSceneIds).length === 0) {
+        // Show a preview placeholder for content without scenes
+        viewerContainer.innerHTML = `
+            <div class="placeholder-3d" style="position: relative;">
+                <span style="font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.1);">3DGS</span>
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 1rem;">
+                    ${content.title}
+                </p>
+                <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.3); font-size: 0.875rem;">
+                    3Dシーンは準備中です
+                </p>
+                <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,0,64,0.1); backdrop-filter: blur(10px); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(255,0,64,0.2);">
+                    <span style="color: var(--color-accent); font-size: 0.75rem; font-weight: 600;">COMING SOON</span>
+                </div>
             </div>
         `;
         return;
@@ -35,7 +55,27 @@ function initializeViewer() {
 // Update viewer when space is selected
 function updateViewerIframe() {
     const viewerContainer = document.getElementById('reflct-viewer');
-    const sceneId = content.reflctSceneIds?.[currentSpace] || REFLCT_CONFIG.defaultSceneId;
+    
+    // Add loading state
+    viewerContainer.classList.add('loading');
+    viewerContainer.style.opacity = '0.5';
+    viewerContainer.style.transition = 'opacity 0.3s ease';
+    
+    const sceneId = content.reflctSceneIds?.[currentSpace];
+    
+    if (!sceneId) {
+        viewerContainer.innerHTML = `
+            <div class="placeholder-3d" style="position: relative;">
+                <span style="font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.1);">3DGS</span>
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 1rem;">
+                    ${currentSpace} のシーンは準備中です
+                </p>
+            </div>
+        `;
+        viewerContainer.style.opacity = '1';
+        viewerContainer.classList.remove('loading');
+        return;
+    }
     
     // Get the actual scene token from demo scenes if available
     const sceneToken = REFLCT_CONFIG.demoScenes[sceneId] || sceneId;
@@ -51,6 +91,7 @@ function updateViewerIframe() {
                 frameborder="0"
                 allowfullscreen
                 style="border-radius: 12px;"
+                onload="this.parentElement.style.opacity = '1'; this.parentElement.classList.remove('loading');"
             ></iframe>
         `;
     } else if (customSceneId) {
@@ -63,6 +104,7 @@ function updateViewerIframe() {
                 frameborder="0"
                 allowfullscreen
                 style="border-radius: 12px;"
+                onload="this.parentElement.style.opacity = '1'; this.parentElement.classList.remove('loading');"
             ></iframe>
         `;
     } else {
@@ -117,37 +159,56 @@ function updateViewerIframe() {
                 </div>
             </div>
         `;
+        viewerContainer.style.opacity = '1';
+        viewerContainer.classList.remove('loading');
     }
 }
 
 // Handle space selection
 function setupSpaceSelection() {
-    const spaceButtons = document.querySelectorAll('.space-btn');
+    // Use event delegation for dynamic buttons
+    const spaceButtonsContainer = document.getElementById('space-buttons');
     
-    spaceButtons.forEach(button => {
-        button.addEventListener('click', () => {
+    if (spaceButtonsContainer) {
+        spaceButtonsContainer.addEventListener('click', (event) => {
+            const button = event.target.closest('.space-btn');
+            if (!button) return;
+            
             // Update active state
-            spaceButtons.forEach(btn => btn.classList.remove('active'));
+            const allButtons = spaceButtonsContainer.querySelectorAll('.space-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             
             // Update current space
             currentSpace = button.textContent;
             
+            // Add visual feedback
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+            
             // Update viewer
             updateViewerIframe();
         });
-    });
+    }
 }
 
 // Initialize when DOM is loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        initializeViewer();
-        setupSpaceSelection();
+        // Wait for script.js to load first
+        setTimeout(() => {
+            initializeViewer();
+            setupSpaceSelection();
+        }, 100);
     });
 } else {
-    initializeViewer();
-    setupSpaceSelection();
+    // Wait for script.js to load first
+    setTimeout(() => {
+        initializeViewer();
+        setupSpaceSelection();
+    }, 100);
 }
 
 // Example of how to integrate actual Reflct viewer when ready:

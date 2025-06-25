@@ -26,6 +26,28 @@
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .detail-player::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.02) 50%, transparent 70%);
+            animation: loading-shimmer 1.5s infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .detail-player.loading::before {
+            opacity: 1;
+        }
+        
+        @keyframes loading-shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
         }
         
         .player-controls {
@@ -88,12 +110,33 @@
             color: var(--color-white);
             cursor: pointer;
             transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
         }
         
-        .space-btn:hover,
+        .space-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
         .space-btn.active {
             background: var(--gradient-primary);
             border-color: transparent;
+            box-shadow: 0 4px 15px rgba(255,0,64,0.3);
+        }
+        
+        .space-btn.active::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .detail-sidebar {
@@ -240,6 +283,7 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
     <script src="detail-viewer.js"></script>
     <script>

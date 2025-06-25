@@ -1,19 +1,5 @@
-// Reflct configuration
-const REFLCT_CONFIG = {
-    apiKey: '3xrQFbtVtXfrLzt1Ir6AS0', // UPHASH Reflct API key
-    defaultSceneId: 'baf502d8-d568-4b5a-affe-d2a62830d815', // UPHASH scene
-    // Public demo scenes from Reflct showcase
-    demoScenes: {
-        'bois-studio': 'ZGUyMDY1MjEtZmFmNi00ODFlLWI0MmYtODY0ZGE4YWJlY2FkOjdoVWM0MVB0elVQa0R1Q3pKbW0zbWQ=',
-        'interior-scan': 'NTc4MGVkM2MtZDA1MS00YjEyLTg4M2EtOTA4Nzk2YjhjNGU4OjNCUmk3YURuQWk0WjUyUEREUThzY1M%3D',
-        'castle-winter': 'OTk0ZTNiYmYtY2UzYy00MGI2LWEyM2ItZjlkMTc0ZWYyMWY0OjNCUmk3YURuQWk0WjUyUEREUThzY1M='
-    },
-    // UPHASH custom scenes
-    customScenes: {
-        'uphash-scene-1': 'baf502d8-d568-4b5a-affe-d2a62830d815',
-        'uphash-scene-2': '016b6bab-850b-4224-9619-3b7ea0569776'
-    }
-};
+// Reflct configuration is loaded from config.js
+// REFLCT_CONFIG is defined globally in config.js
 
 // Catalog data with enhanced structure
 const catalogData = [
@@ -60,7 +46,7 @@ const catalogData = [
         spaces: ["エントランス", "オフィスフロア", "展望台"],
         tags: ["高層ビル", "オフィス", "複合施設"],
         reflctSceneIds: {
-            "エントランス": "interior-scan",
+            "エントランス": "cic-fukuoka-game",
             "オフィスフロア": "bois-studio", 
             "展望台": "castle-winter"
         }
@@ -271,9 +257,25 @@ let itemsDisplayed = 6;
 
 // Header scroll effect
 let lastScroll = 0;
+let scrollDirection = 'up';
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
+    // Determine scroll direction
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        scrollDirection = 'down';
+    } else if (currentScroll < lastScroll) {
+        scrollDirection = 'up';
+    }
+    
+    // Hide/show header based on scroll direction
+    if (scrollDirection === 'down' && currentScroll > 100) {
+        header.classList.add('hide');
+    } else {
+        header.classList.remove('hide');
+    }
+    
+    // Add scrolled class for background
     if (currentScroll > 50) {
         header.classList.add('scrolled');
     } else {
