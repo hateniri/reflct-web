@@ -1,6 +1,6 @@
 // Reflct configuration
 const REFLCT_CONFIG = {
-    apiKey: 'YOUR_API_KEY_HERE', // Replace with actual API key when available
+    apiKey: '3xrQFbtVtXfrLzt1Ir6AS0', // UPHASH Reflct API key
     defaultSceneId: 'demo-scene-id', // Replace with actual scene ID
     // Public demo scenes from Reflct showcase
     demoScenes: {
