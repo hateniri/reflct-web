@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Direct Reflct Test</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 20px;
+        }
+        .test-container {
+            margin-bottom: 30px;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #ff0040;
+        }
+        code {
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct Reflct Viewer Test</h1>
+    
+    <div class="test-container">
+        <h2>Test 1: Demo Scene (public token)</h2>
+        <p>URL: <code>https://www.reflct.app/share-scene?token=ZGUyMDY1MjEtZmFmNi00ODFlLWI0MmYtODY0ZGE4YWJlY2FkOjdoVWM0MVB0elVQa0R1Q3pKbW0zbWQ=</code></p>
+        <iframe src="https://www.reflct.app/share-scene?token=ZGUyMDY1MjEtZmFmNi00ODFlLWI0MmYtODY0ZGE4YWJlY2FkOjdoVWM0MVB0elVQa0R1Q3pKbW0zbWQ="></iframe>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test 2: Custom Scene with API Key</h2>
+        <p>Scene ID: baf502d8-d568-4b5a-affe-d2a62830d815</p>
+        <p>API Key: 3xrQFbtVtXfrLzt1Ir6AS0</p>
+        <p>URL: <code>https://app.reflct.app/viewer/baf502d8-d568-4b5a-affe-d2a62830d815?key=3xrQFbtVtXfrLzt1Ir6AS0</code></p>
+        <iframe src="https://app.reflct.app/viewer/baf502d8-d568-4b5a-affe-d2a62830d815?key=3xrQFbtVtXfrLzt1Ir6AS0"></iframe>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test 3: Alternative URL format (viewer.reflct.app)</h2>
+        <p>URL: <code>https://viewer.reflct.app/baf502d8-d568-4b5a-affe-d2a62830d815?apiKey=3xrQFbtVtXfrLzt1Ir6AS0</code></p>
+        <iframe src="https://viewer.reflct.app/baf502d8-d568-4b5a-affe-d2a62830d815?apiKey=3xrQFbtVtXfrLzt1Ir6AS0"></iframe>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test 4: Embed format</h2>
+        <p>URL: <code>https://app.reflct.app/embed/baf502d8-d568-4b5a-affe-d2a62830d815?key=3xrQFbtVtXfrLzt1Ir6AS0</code></p>
+        <iframe src="https://app.reflct.app/embed/baf502d8-d568-4b5a-affe-d2a62830d815?key=3xrQFbtVtXfrLzt1Ir6AS0"></iframe>
+    </div>
+</body>
+</html>

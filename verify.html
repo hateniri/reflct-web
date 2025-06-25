@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Reflct Configuration</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        .section {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #ff0040;
+            margin-bottom: 15px;
+        }
+        .success {
+            color: #4caf50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .warning {
+            color: #ff9800;
+        }
+        pre {
+            background: #333;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .test-frame {
+            width: 100%;
+            height: 400px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reflct Configuration Verification</h1>
+    
+    <div class="section">
+        <h2>1. Configuration Loading Check</h2>
+        <div id="config-check">Checking configuration...</div>
+    </div>
+    
+    <div class="section">
+        <h2>2. Test Demo Scene (bois-studio)</h2>
+        <div id="demo-test">Testing demo scene...</div>
+        <iframe id="demo-frame" class="test-frame" style="display:none;"></iframe>
+    </div>
+    
+    <div class="section">
+        <h2>3. Test Custom Scene (uphash-scene-1)</h2>
+        <div id="custom-test">Testing custom scene...</div>
+        <iframe id="custom-frame" class="test-frame" style="display:none;"></iframe>
+    </div>
+    
+    <div class="section">
+        <h2>4. Console Output</h2>
+        <pre id="console-output"></pre>
+    </div>
+    
+    <script src="config.js"></script>
+    <script src="config.local.js"></script>
+    <script>
+        const log = (message, type = 'info') => {
+            const output = document.getElementById('console-output');
+            const time = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#4caf50';
+            output.innerHTML += `<span style="color: ${color}">[${time}] ${message}</span>\n`;
+            console.log(message);
+        };
+        
+        // Wait a bit for config to load
+        setTimeout(() => {
+            // 1. Check configuration
+            const configCheck = document.getElementById('config-check');
+            const hasApiKey = REFLCT_CONFIG.apiKey && REFLCT_CONFIG.apiKey !== 'YOUR_API_KEY_HERE';
+            
+            if (hasApiKey) {
+                configCheck.innerHTML = `
+                    <p class="success">✓ API Key loaded successfully</p>
+                    <p>API Key: ${REFLCT_CONFIG.apiKey.substring(0, 10)}...</p>
+                    <p>Demo scenes: ${Object.keys(REFLCT_CONFIG.demoScenes).join(', ')}</p>
+                    <p>Custom scenes: ${Object.keys(REFLCT_CONFIG.customScenes).join(', ')}</p>
+                `;
+                log('Configuration loaded successfully');
+            } else {
+                configCheck.innerHTML = '<p class="error">✗ API Key not loaded or is default</p>';
+                log('Failed to load API key', 'error');
+            }
+            
+            // 2. Test demo scene
+            const demoTest = document.getElementById('demo-test');
+            const demoFrame = document.getElementById('demo-frame');
+            const demoToken = REFLCT_CONFIG.demoScenes['bois-studio'];
+            const demoUrl = `https://www.reflct.app/share-scene?token=${demoToken}`;
+            
+            demoTest.innerHTML = `
+                <p>Testing URL: <code>${demoUrl}</code></p>
+                <p class="warning">Loading iframe...</p>
+            `;
+            
+            demoFrame.src = demoUrl;
+            demoFrame.style.display = 'block';
+            demoFrame.onload = () => {
+                demoTest.querySelector('.warning').innerHTML = '<span class="success">✓ Demo scene loaded</span>';
+                log('Demo scene loaded successfully');
+            };
+            demoFrame.onerror = () => {
+                demoTest.querySelector('.warning').innerHTML = '<span class="error">✗ Failed to load demo scene</span>';
+                log('Failed to load demo scene', 'error');
+            };
+            
+            // 3. Test custom scene
+            const customTest = document.getElementById('custom-test');
+            const customFrame = document.getElementById('custom-frame');
+            const customSceneId = REFLCT_CONFIG.customScenes['uphash-scene-1'];
+            const customUrl = `https://app.reflct.app/viewer/${customSceneId}?key=${REFLCT_CONFIG.apiKey}`;
+            
+            customTest.innerHTML = `
+                <p>Testing URL: <code>${customUrl}</code></p>
+                <p class="warning">Loading iframe...</p>
+            `;
+            
+            if (hasApiKey) {
+                customFrame.src = customUrl;
+                customFrame.style.display = 'block';
+                customFrame.onload = () => {
+                    customTest.querySelector('.warning').innerHTML = '<span class="success">✓ Custom scene loaded</span>';
+                    log('Custom scene loaded successfully');
+                };
+                customFrame.onerror = () => {
+                    customTest.querySelector('.warning').innerHTML = '<span class="error">✗ Failed to load custom scene</span>';
+                    log('Failed to load custom scene', 'error');
+                };
+            } else {
+                customTest.querySelector('.warning').innerHTML = '<span class="error">✗ Cannot test without valid API key</span>';
+                log('Skipping custom scene test - no API key', 'warning');
+            }
+            
+            // Log all config
+            log('Full REFLCT_CONFIG: ' + JSON.stringify(REFLCT_CONFIG, null, 2));
+            
+        }, 500);
+    </script>
+</body>
+</html>
