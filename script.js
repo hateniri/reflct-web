@@ -1,17 +1,23 @@
 // Catalog data
 const catalogData = [
-    { id: 1, title: "Urban Explorer", category: "architecture", views: "2.3K" },
-    { id: 2, title: "Forest Dreams", category: "nature", views: "1.8K" },
-    { id: 3, title: "Digital Art Space", category: "art", views: "3.1K" },
-    { id: 4, title: "Ocean Depths", category: "nature", views: "2.7K" },
-    { id: 5, title: "Modern Gallery", category: "architecture", views: "1.5K" },
-    { id: 6, title: "Cosmic Journey", category: "science", views: "4.2K" },
-    { id: 7, title: "Mountain Peak", category: "nature", views: "2.1K" },
-    { id: 8, title: "Abstract Reality", category: "art", views: "1.9K" },
-    { id: 9, title: "City Lights", category: "architecture", views: "3.5K" },
-    { id: 10, title: "Molecular View", category: "science", views: "1.3K" },
-    { id: 11, title: "Desert Oasis", category: "nature", views: "2.4K" },
-    { id: 12, title: "Sculpture Garden", category: "art", views: "1.7K" }
+    { id: 1, title: "東京国立博物館", category: "美術館", views: "5.2K" },
+    { id: 2, title: "森美術館 特別展示", category: "美術館", views: "3.8K" },
+    { id: 3, title: "六本木ヒルズ 森タワー", category: "オフィスビル", views: "4.1K" },
+    { id: 4, title: "渋谷スクランブルスクエア", category: "オフィスビル", views: "2.7K" },
+    { id: 5, title: "隈研吾 建築作品", category: "建築空間", views: "6.5K" },
+    { id: 6, title: "安藤忠雄 光の教会", category: "建築空間", views: "7.2K" },
+    { id: 7, title: "新宿御苑 四季の風景", category: "公園", views: "3.1K" },
+    { id: 8, title: "上野公園 桜並木", category: "公園", views: "4.9K" },
+    { id: 9, title: "トヨタ自動車 工場見学", category: "工場", views: "2.3K" },
+    { id: 10, title: "製鉄所 内部空間", category: "工場", views: "1.8K" },
+    { id: 11, title: "富士山 雲海", category: "自然", views: "8.4K" },
+    { id: 12, title: "屋久島 原生林", category: "自然", views: "5.7K" },
+    { id: 13, title: "銀座シックス", category: "商業施設", views: "3.5K" },
+    { id: 14, title: "表参道ヒルズ", category: "商業施設", views: "2.9K" },
+    { id: 15, title: "お台場 海浜公園", category: "屋外空間", views: "3.3K" },
+    { id: 16, title: "横浜みなとみらい", category: "屋外空間", views: "4.6K" },
+    { id: 17, title: "teamLab Borderless", category: "美術館", views: "9.1K" },
+    { id: 18, title: "日産 グローバル本社", category: "オフィスビル", views: "2.1K" }
 ];
 
 // DOM Elements
@@ -23,7 +29,7 @@ const filterTabs = document.querySelectorAll('.filter-tab');
 const loadMoreBtn = document.querySelector('.load-more-btn');
 
 // State
-let currentFilter = 'all';
+let currentFilter = 'すべて';
 let itemsDisplayed = 6;
 
 // Header scroll effect
@@ -102,7 +108,7 @@ filterTabs.forEach(tab => {
 
 // Render catalog items
 function renderCatalog() {
-    const filteredData = currentFilter === 'all' 
+    const filteredData = currentFilter === 'すべて' 
         ? catalogData 
         : catalogData.filter(item => item.category === currentFilter);
     
