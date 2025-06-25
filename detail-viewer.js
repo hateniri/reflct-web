@@ -37,57 +37,74 @@ function updateViewerIframe() {
     const viewerContainer = document.getElementById('reflct-viewer');
     const sceneId = content.reflctSceneIds?.[currentSpace] || REFLCT_CONFIG.defaultSceneId;
     
-    // For now, show a placeholder with integration instructions
-    viewerContainer.innerHTML = `
-        <div class="reflct-integration-placeholder" style="
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
-        ">
-            <div style="
-                background: rgba(255,255,255,0.05);
-                padding: 2rem;
-                border-radius: 8px;
-                backdrop-filter: blur(10px);
-                max-width: 600px;
+    // Get the actual scene token from demo scenes if available
+    const sceneToken = REFLCT_CONFIG.demoScenes[sceneId] || sceneId;
+    
+    // If we have a demo scene token, show the iframe
+    if (REFLCT_CONFIG.demoScenes[sceneId]) {
+        viewerContainer.innerHTML = `
+            <iframe 
+                src="https://www.reflct.app/share-scene?token=${sceneToken}"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                allowfullscreen
+                style="border-radius: 12px;"
+            ></iframe>
+        `;
+    } else {
+        // Show placeholder for non-demo scenes
+        viewerContainer.innerHTML = `
+            <div class="reflct-integration-placeholder" style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+                border-radius: 12px;
+                padding: 3rem;
+                text-align: center;
             ">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent);">
-                    Reflct 3DGSビューアー
-                </h3>
-                <p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.8);">
-                    選択中の空間: <strong>${currentSpace}</strong>
-                </p>
-                <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6); font-size: 0.875rem;">
-                    Scene ID: ${sceneId}
-                </p>
                 <div style="
-                    background: rgba(0,0,0,0.3);
-                    padding: 1rem;
-                    border-radius: 4px;
-                    margin-top: 1.5rem;
-                    font-family: monospace;
-                    font-size: 0.875rem;
-                    text-align: left;
+                    background: rgba(255,255,255,0.05);
+                    padding: 2rem;
+                    border-radius: 8px;
+                    backdrop-filter: blur(10px);
+                    max-width: 600px;
                 ">
-                    <p style="margin-bottom: 0.5rem; color: #ff6b6b;">// Reflct統合コード例:</p>
-                    <p style="color: #66d9ef;">npm install @reflct/react</p>
-                    <p style="margin-top: 0.5rem; color: #a6e22e;">
-                        &lt;Viewer id="${sceneId}" apikey="${REFLCT_CONFIG.apiKey}" /&gt;
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent);">
+                        Reflct 3DGSビューアー
+                    </h3>
+                    <p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.8);">
+                        選択中の空間: <strong>${currentSpace}</strong>
+                    </p>
+                    <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6); font-size: 0.875rem;">
+                        Scene ID: ${sceneId}
+                    </p>
+                    <div style="
+                        background: rgba(0,0,0,0.3);
+                        padding: 1rem;
+                        border-radius: 4px;
+                        margin-top: 1.5rem;
+                        font-family: monospace;
+                        font-size: 0.875rem;
+                        text-align: left;
+                    ">
+                        <p style="margin-bottom: 0.5rem; color: #ff6b6b;">// Reflct統合コード例:</p>
+                        <p style="color: #66d9ef;">npm install @reflct/react</p>
+                        <p style="margin-top: 0.5rem; color: #a6e22e;">
+                            &lt;Viewer id="${sceneId}" apikey="${REFLCT_CONFIG.apiKey}" /&gt;
+                        </p>
+                    </div>
+                    <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.75rem;">
+                        このコンテンツには専用のシーンIDが必要です
                     </p>
                 </div>
-                <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.75rem;">
-                    実際の3Dシーンを表示するには、Reflct APIキーとシーンIDが必要です
-                </p>
             </div>
-        </div>
-    `;
+        `;
+    }
 }
 
 // Handle space selection

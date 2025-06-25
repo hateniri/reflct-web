@@ -1,7 +1,13 @@
 // Reflct configuration
 const REFLCT_CONFIG = {
-    apiKey: 'YOUR_API_KEY_HERE', // Replace with actual API key
-    defaultSceneId: 'demo-scene-id' // Replace with actual scene ID
+    apiKey: 'YOUR_API_KEY_HERE', // Replace with actual API key when available
+    defaultSceneId: 'demo-scene-id', // Replace with actual scene ID
+    // Public demo scenes from Reflct showcase
+    demoScenes: {
+        'bois-studio': 'ZGUyMDY1MjEtZmFmNi00ODFlLWI0MmYtODY0ZGE4YWJlY2FkOjdoVWM0MVB0elVQa0R1Q3pKbW0zbWQ=',
+        'interior-scan': 'NTc4MGVkM2MtZDA1MS00YjEyLTg4M2EtOTA4Nzk2YjhjNGU4OjNCUmk3YURuQWk0WjUyUEREUThzY1M%3D',
+        'castle-winter': 'OTk0ZTNiYmYtY2UzYy00MGI2LWEyM2ItZjlkMTc0ZWYyMWY0OjNCUmk3YURuQWk0WjUyUEREUThzY1M='
+    }
 };
 
 // Catalog data with enhanced structure
@@ -17,9 +23,9 @@ const catalogData = [
         spaces: ["本館", "東洋館", "平成館"],
         tags: ["文化財", "歴史", "アート"],
         reflctSceneIds: {
-            "本館": "scene-id-1",
-            "東洋館": "scene-id-2", 
-            "平成館": "scene-id-3"
+            "本館": "bois-studio",
+            "東洋館": "interior-scan", 
+            "平成館": "castle-winter"
         }
     },
     { 
@@ -31,7 +37,12 @@ const catalogData = [
         duration: "20分",
         year: "2024",
         spaces: ["展示室A", "展示室B", "スカイデッキ"],
-        tags: ["現代アート", "夜景", "六本木"]
+        tags: ["現代アート", "夜景", "六本木"],
+        reflctSceneIds: {
+            "展示室A": "interior-scan",
+            "展示室B": "bois-studio", 
+            "スカイデッキ": "castle-winter"
+        }
     },
     { 
         id: 3, 
@@ -42,7 +53,12 @@ const catalogData = [
         duration: "12分",
         year: "2023",
         spaces: ["エントランス", "オフィスフロア", "展望台"],
-        tags: ["高層ビル", "オフィス", "複合施設"]
+        tags: ["高層ビル", "オフィス", "複合施設"],
+        reflctSceneIds: {
+            "エントランス": "interior-scan",
+            "オフィスフロア": "bois-studio", 
+            "展望台": "castle-winter"
+        }
     },
     { 
         id: 4, 
@@ -64,7 +80,12 @@ const catalogData = [
         duration: "25分",
         year: "2023",
         spaces: ["国立競技場", "根津美術館", "サニーヒルズ"],
-        tags: ["建築", "木造", "デザイン"]
+        tags: ["建築", "木造", "デザイン"],
+        reflctSceneIds: {
+            "国立競技場": "castle-winter",
+            "根津美術館": "interior-scan", 
+            "サニーヒルズ": "bois-studio"
+        }
     },
     { 
         id: 6, 
@@ -75,7 +96,12 @@ const catalogData = [
         duration: "15分",
         year: "2023",
         spaces: ["礼拝堂", "光の十字架", "外観"],
-        tags: ["建築", "教会", "光"]
+        tags: ["建築", "教会", "光"],
+        reflctSceneIds: {
+            "礼拝堂": "bois-studio",
+            "光の十字架": "interior-scan", 
+            "外観": "castle-winter"
+        }
     },
     { 
         id: 7, 
@@ -130,7 +156,12 @@ const catalogData = [
         duration: "25分",
         year: "2024",
         spaces: ["山頂", "五合目", "雲海展望"],
-        tags: ["世界遺産", "絶景", "自然"]
+        tags: ["世界遺産", "絶景", "自然"],
+        reflctSceneIds: {
+            "山頂": "castle-winter",
+            "五合目": "bois-studio", 
+            "雲海展望": "castle-winter"
+        }
     },
     { 
         id: 12, 
@@ -196,7 +227,12 @@ const catalogData = [
         duration: "60分",
         year: "2024",
         spaces: ["Borderless World", "運動の森", "EN Tea House"],
-        tags: ["デジタルアート", "体験型", "お台場"]
+        tags: ["デジタルアート", "体験型", "お台場"],
+        reflctSceneIds: {
+            "Borderless World": "bois-studio",
+            "運動の森": "interior-scan", 
+            "EN Tea House": "interior-scan"
+        }
     },
     { 
         id: 18, 
