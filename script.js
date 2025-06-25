@@ -408,6 +408,19 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
+// Add click handlers to featured items
+document.querySelectorAll('.featured-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+        // Don't navigate if clicking the play button
+        if (!e.target.closest('.play-btn')) {
+            const itemId = item.getAttribute('data-id');
+            if (itemId) {
+                window.location.href = `detail.html?id=${itemId}`;
+            }
+        }
+    });
+});
+
 // Add hover effect to buttons
 document.querySelectorAll('.btn, .play-btn').forEach(button => {
     button.addEventListener('mouseenter', function(e) {
