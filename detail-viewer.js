@@ -39,12 +39,25 @@ function updateViewerIframe() {
     
     // Get the actual scene token from demo scenes if available
     const sceneToken = REFLCT_CONFIG.demoScenes[sceneId] || sceneId;
+    const customSceneId = REFLCT_CONFIG.customScenes[sceneId];
     
     // If we have a demo scene token, show the iframe
     if (REFLCT_CONFIG.demoScenes[sceneId]) {
         viewerContainer.innerHTML = `
             <iframe 
                 src="https://www.reflct.app/share-scene?token=${sceneToken}"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                allowfullscreen
+                style="border-radius: 12px;"
+            ></iframe>
+        `;
+    } else if (customSceneId) {
+        // For custom scenes, use the Reflct viewer with API key
+        viewerContainer.innerHTML = `
+            <iframe 
+                src="https://app.reflct.app/viewer/${customSceneId}?key=${REFLCT_CONFIG.apiKey}"
                 width="100%"
                 height="100%"
                 frameborder="0"

@@ -1,12 +1,16 @@
 // Reflct configuration
 const REFLCT_CONFIG = {
     apiKey: '3xrQFbtVtXfrLzt1Ir6AS0', // UPHASH Reflct API key
-    defaultSceneId: 'demo-scene-id', // Replace with actual scene ID
+    defaultSceneId: 'baf502d8-d568-4b5a-affe-d2a62830d815', // UPHASH scene
     // Public demo scenes from Reflct showcase
     demoScenes: {
         'bois-studio': 'ZGUyMDY1MjEtZmFmNi00ODFlLWI0MmYtODY0ZGE4YWJlY2FkOjdoVWM0MVB0elVQa0R1Q3pKbW0zbWQ=',
         'interior-scan': 'NTc4MGVkM2MtZDA1MS00YjEyLTg4M2EtOTA4Nzk2YjhjNGU4OjNCUmk3YURuQWk0WjUyUEREUThzY1M%3D',
         'castle-winter': 'OTk0ZTNiYmYtY2UzYy00MGI2LWEyM2ItZjlkMTc0ZWYyMWY0OjNCUmk3YURuQWk0WjUyUEREUThzY1M='
+    },
+    // UPHASH custom scenes
+    customScenes: {
+        'uphash-scene-1': 'baf502d8-d568-4b5a-affe-d2a62830d815'
     }
 };
 
@@ -69,7 +73,12 @@ const catalogData = [
         duration: "18分",
         year: "2024",
         spaces: ["SHIBUYA SKY", "オフィスエリア", "商業エリア"],
-        tags: ["展望台", "渋谷", "新建築"]
+        tags: ["展望台", "渋谷", "新建築"],
+        reflctSceneIds: {
+            "SHIBUYA SKY": "uphash-scene-1",
+            "オフィスエリア": "interior-scan", 
+            "商業エリア": "bois-studio"
+        }
     },
     { 
         id: 5, 
