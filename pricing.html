@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPHASH Viewer 料金プラン - Reflct</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 2rem 3rem;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pricing-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-tagline {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .pricing-table {
+            background: var(--color-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            overflow-x: auto;
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .pricing-table th {
+            background: rgba(255,255,255,0.05);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .pricing-table td:first-child,
+        .pricing-table th:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .plan-highlight {
+            background: rgba(255,0,64,0.1);
+            border: 2px solid var(--color-accent);
+        }
+        
+        .pricing-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .pricing-section p {
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .addon-example {
+            background: var(--color-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            color: var(--color-accent-light);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255,0,64,0.1), rgba(255,0,64,0.05));
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .contact-section {
+            text-align: center;
+            padding: 3rem;
+            background: var(--color-gray);
+            border-radius: 16px;
+        }
+        
+        .contact-section h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition-fast);
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,0,64,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-table {
+                font-size: 0.875rem;
+            }
+            
+            .pricing-table th,
+            .pricing-table td {
+                padding: 1rem 0.5rem;
+            }
+            
+            .pricing-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <img src="assets/images/uphash_logo_white.png" alt="UpHash Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">ホーム</a></li>
+                <li><a href="index.html#collections" class="nav-link">コレクション</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h1>Reflct 料金プラン</h1>
+            <p class="pricing-subtitle">あなたの3D空間を、手軽にWebで共有・埋め込み。</p>
+            <p class="pricing-tagline">目的に合わせて選べる、シンプルな3つの料金プラン。</p>
+        </div>
+        
+        <div class="pricing-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>プラン名</th>
+                        <th>料金（月額・税込）</th>
+                        <th>統合シーン数</th>
+                        <th>Reflctロゴ表示</th>
+                        <th>埋め込み / API</th>
+                        <th>商用利用</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>フリープラン</strong></td>
+                        <td>¥0</td>
+                        <td>最大10件</td>
+                        <td>あり</td>
+                        <td>なし</td>
+                        <td>可</td>
+                        <td>個人・試用向け</td>
+                    </tr>
+                    <tr>
+                        <td><strong>スタンダード</strong></td>
+                        <td>¥4,980</td>
+                        <td>無制限（共有用）</td>
+                        <td>あり</td>
+                        <td>なし</td>
+                        <td>可</td>
+                        <td>ロゴ付きURL共有のみ</td>
+                    </tr>
+                    <tr class="plan-highlight">
+                        <td><strong>プロプラン</strong></td>
+                        <td>¥9,800</td>
+                        <td>10件まで統合可</td>
+                        <td>なし</td>
+                        <td>あり</td>
+                        <td>可</td>
+                        <td>商用・法人利用に最適</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="pricing-section">
+            <h3>🔄 統合シーンの追加</h3>
+            <p>プロプラン以上でご利用可能な「統合シーン」は、<strong>1件ごとに月額 ¥500</strong> で追加できます。</p>
+            <div class="addon-example">
+                例：統合シーンが20件 → 基本料金 ¥9,800 + (追加10件 × ¥500) = ¥14,800/月
+            </div>
+            <p>埋め込みURL・ロゴ非表示・外部連携機能付き</p>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>💡 統合シーンとは？</h3>
+            <p><strong>統合シーン</strong> ＝ ロゴなし＆独自ドメインへの埋め込み可・API連携可の本番用ビューア</p>
+            <p>共有リンクやQRコードの配布、Webサイトへの組み込みなど、<strong>ビジネス用途での導入に最適</strong>です。</p>
+        </div>
+        
+        <div class="contact-section">
+            <h3>🛠️ カスタム・法人契約</h3>
+            <p>100件以上の大規模運用や、SLA対応、オフラインビューア開発などについては、<br>別途お問い合わせください。</p>
+            <a href="mailto:contact@uphash.co" class="contact-button">
+                📩 お問い合わせはこちら
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About UPHASH Viewer</h4>
+                    <p>3D Gaussian Splattingコンテンツの配信プラットフォーム。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="pricing.html">料金プラン</a></li>
+                        <li><a href="#">ドキュメント</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 UPHASH. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
